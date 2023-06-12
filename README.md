@@ -2,7 +2,7 @@
 Our project is mainly about fire and smoke detection on edge devices, here's the hardware architecture:
 
 
-![diagram projet  Récupéré -01](https://github.com/MERYX-bh/Fire-and-smoke-Detection-on-edge-devices/assets/65626982/a0de4887-9639-4afa-8357-b082762edd52)
+![hardware](https://github.com/MERYX-bh/Fire-and-smoke-Detection-on-edge-devices/assets/65626982/fb8c86cc-8712-4edf-b91c-aecae692c90a)
 
 We used for :
 - Backend : Flask 
