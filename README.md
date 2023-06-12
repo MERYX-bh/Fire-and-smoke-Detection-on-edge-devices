@@ -9,6 +9,6 @@ We used for :
 - frontend : html, css 
 
 - hardware components:
-  Jetson nano 4
-  Raspberry pi 3
+  Jetson nano 4,
+  Raspberry pi 3,
   pi camera
