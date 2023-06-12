@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fire and smoke detector</title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            background-image: url('flames.png');
+            background-repeat: no-repeat;
+            background-position: bottom center;
+            background-size: contain;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 20px;
+            background-color: #272424;
+        }
+
+        .left-section {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            width: 60px;
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            font-size: 32px;
+            font-weight: bold;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .nav-items {
+            display: flex;
+        }
+
+        .nav-item {
+            margin-right: 20px;
+            font-size: 16px;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .text {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .text-secondary {
+            font-size: 15px;
+            font-weight: lighter;
+            text-align: center;
+            word-wrap: break-word;
+            margin-top: 20px;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        .button {
+            width: 250px;
+            height: 40px;
+            background-color: #df5703;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        .button-last {
+            margin-bottom: 180px;
+        }
+
+        .button:hover {
+            background-color: #555555;
+        }
+
+        /* Responsive Styles */
+
+        @media only screen and (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .left-section {
+                margin-bottom: 10px;
+            }
+
+            .logo {
+                width: 60px;
+            }
+
+            .logo-text {
+                font-size: 18px;
+            }
+
+            .nav-items {
+                margin-top: 10px;
+            }
+
+            .nav-item {
+                margin-right: 10px;
+            }
+
+            .container {
+                flex-direction: column;
+            }
+
+            .buttons {
+                margin-top: 30px;
+            }
+
+            .button {
+                width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="left-section">
+            <img src="fire_logo.png" alt="Fire Logo" class="logo">
+            <span class="logo-text">FireAI</span>
+        </div>
+        <div class="right-section">
+            <a href="#" class="nav-item">Home</a>
+            <a href="#" class="nav-item">Documentation</a>
+            <a href="#" class="nav-item">Statistics</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div>
+            <span class="text-secondary">Choose the version of YOLO that you want to use for your detection</span>
+        </div>
+    </div>
+
+    <div class="buttons">
+        <button class="button">yolov5</button>
+        <button class="button">yolov7</button>
+        <button class="button button-last">yolov8</button>
+    </div>
+</body>
+</html>

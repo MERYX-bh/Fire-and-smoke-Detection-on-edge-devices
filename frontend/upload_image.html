@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fire and smoke detector</title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: #272424;
+        }
+
+        .navbar-logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            width: 60px;
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .nav-items {
+            display: flex;
+        }
+
+        .nav-item {
+            margin-right: 20px;
+            font-size: 16px;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .upload-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            width: 700px;
+            height: 100%;
+        }
+
+        .upload-container.uploaded {
+            justify-content: space-between;
+        }
+
+        .upload-icon {
+            width: 200px;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        .upload-icon.hidden {
+            display: none;
+        }
+
+        .upload-icon img {
+            width: 100px;
+            height: 100px;
+        }
+
+        .upload-label {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        .upload-button {
+            width: 200px;
+            height: 40px;
+            background-color: #df5703;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .upload-button:hover {
+            background-color: #555555;
+        }
+
+        .preview-container {
+            position: relative; /* Added */
+            max-width: 100%;
+            max-height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .delete-icon {
+            position: absolute; /* Added */
+            top: 20px; /* Added */
+            right: 20px; /* Added */
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-logo">
+            <img src="fire_logo.png" alt="Fire Logo" class="logo">
+            <span class="logo-text">FireAI</span>
+        </div>
+        <div class="nav-items">
+            <a href="#" class="nav-item">Home</a>
+            <a href="#" class="nav-item">Documentation</a>
+            <a href="#" class="nav-item">Statistics</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="upload-container">
+            <div>Predict from an image</div>
+            <br/>
+            <form action="/upload" method="POST" enctype="multipart/form-data">
+                <label class="upload-icon" id="upload-icon">
+                    <img src="upload_icon.png" alt="Upload Icon">
+                </label>
+                <input id="file-input" type="file" name="image" accept="image/*" onchange="previewImage(event)" style="display: none;">
+                <br>
+                <div class="preview-container">
+                    <div class="image-container">
+                        <img id="preview" src="#" alt="Preview" style="display: none;">
+                        <span class="delete-icon" id="delete-icon" style="display: none;">&#10060;</span>
+                    </div>
+                </div>
+                <br>
+                <button type="submit" class="upload-button" id="predict-button">Predict</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        var preview = document.getElementById('preview');
+        var deleteIcon = document.getElementById('delete-icon');
+        var uploadIcon = document.getElementById('upload-icon');
+
+        function previewImage(event) {
+            var reader = new FileReader();
+            reader.onload = function() {
+                preview.src = reader.result;
+                preview.style.display = 'block';
+                deleteIcon.style.display = 'block';
+                uploadIcon.classList.add('hidden');
+                document.querySelector('.upload-container').classList.add('uploaded');
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
+        deleteIcon.addEventListener('click', function() {
+            preview.src = '#';
+            preview.style.display = 'none';
+            deleteIcon.style.display = 'none';
+            uploadIcon.classList.remove('hidden');
+            document.querySelector('.upload-container').classList.remove('uploaded');
+        });
+
+        uploadIcon.addEventListener('click', function() {
+            document.getElementById('file-input').click();
+        });
+    </script>
+</body>
+</html>

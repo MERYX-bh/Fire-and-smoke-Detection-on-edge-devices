@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fire and smoke detector</title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: #272424;
+        }
+
+        .navbar-logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            width: 60px;
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .nav-items {
+            display: flex;
+        }
+
+        .nav-item {
+            margin-right: 20px;
+            font-size: 16px;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .upload-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 2px dashed #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            width: 600px;
+            height: 400px;
+        }
+
+        .upload-video {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 20px;
+        }
+
+        .upload-label {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        .upload-button {
+            width: 200px;
+            height: 40px;
+            background-color: #df5703;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        .upload-button:hover {
+            background-color: #555555;
+        }
+        video {
+            max-width: 500px;
+            max-height: 500px;
+        }
+
+        .delete-icon {
+            position: relative;
+            top: -120px;
+            right: -250px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-logo">
+            <img src="fire_logo.png" alt="Fire Logo" class="logo">
+            <span class="logo-text">FireAI</span>
+        </div>
+        <div class="nav-items">
+            <a href="#" class="nav-item">Home</a>
+            <a href="#" class="nav-item">Documentation</a>
+            <a href="#" class="nav-item">Statistics</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="upload-container">
+            <div>Predict from a video</div>
+            <br/>
+            <form action="/upload" method="POST" enctype="multipart/form-data">
+                <input type="file" name="video" accept="video/*" onchange="previewVideo(event)">
+                <br>
+                <video id="preview" src="#" controls style="display: none;"></video>
+                <span class="delete-icon" id="delete-icon" style="display: none;">&#10060;</span>
+                <br>
+                <button type="submit" class="upload-button" id="predict-button">Predict</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        var preview = document.getElementById('preview');
+        var deleteIcon = document.getElementById('delete-icon');
+
+        function previewVideo(event) {
+            var reader = new FileReader();
+            reader.onload = function() {
+                preview.src = reader.result;
+                preview.style.display = 'block';
+                deleteIcon.style.display = 'block';
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
+        deleteIcon.addEventListener('click', function() {
+            preview.src = '#';
+            preview.style.display = 'none';
+            deleteIcon.style.display = 'none';
+        });
+    </script>
+</body>
+</html>

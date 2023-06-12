@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fire and smoke detector</title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: #272424;
+        }
+
+        .navbar-logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            width: 60px;
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .nav-items {
+            display: flex;
+        }
+
+        .nav-item {
+            margin-right: 20px;
+            font-size: 16px;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .nav-item:hover {
+            color: #df5703;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .upload-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 2px dashed #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            width: 600px;
+            height: 400px;
+        }
+
+        .upload-video {
+            width: 80%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .upload-label {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        .upload-button {
+            width: 200px;
+            height: 40px;
+            background-color: #df5703;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        .upload-button:hover {
+            background-color: #555555;
+        }
+
+        .delete-icon {
+            position: relative;
+            top: -120px;
+            right: -250px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-logo">
+            <img src="fire_logo.png" alt="Fire Logo" class="logo">
+            <span class="logo-text">FireAI</span>
+        </div>
+        <div class="nav-items">
+            <a href="#" class="nav-item">Home</a>
+            <a href="#" class="nav-item">Documentation</a>
+            <a href="#" class="nav-item">Statistics</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="upload-container">
+            <div>Live Stream from Camera</div>
+            <br/>
+            <video id="preview" autoplay class="upload-video"></video>
+        </div>
+    </div>
+
+    <script>
+        var preview = document.getElementById('preview');
+
+        function startCamera() {
+            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                navigator.mediaDevices.getUserMedia({ video: true })
+                .then(function(stream) {
+                    preview.srcObject = stream;
+                })
+                .catch(function(error) {
+                    console.log("Unable to access camera: " + error.message);
+                });
+            } else {
+                console.log("getUserMedia is not supported");
+            }
+        }
+
+        startCamera();
+    </script>
+</body>
+</html>
